@@ -1,7 +1,6 @@
-html {
-    scroll-behavior: smooth;
-  }
-
+/* ============================================
+   RESET E ESTILOS GLOBAIS
+   ============================================ */
 * {
     margin: 0;
     padding: 0;
@@ -9,7 +8,106 @@ html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
 
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   BARRA DE ACESSIBILIDADE
+   ============================================ */
+.accessibility-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #2c3e50;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    z-index: 10000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.accessibility-bar button {
+    background: #34495e;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s, transform 0.2s;
+    min-width: 40px;
+}
+
+.accessibility-bar button:hover,
+.accessibility-bar button:focus {
+    background: #4a3eef;
+    transform: translateY(-2px);
+    outline: 2px solid #ffffff;
+}
+
+/* ============================================
+   SKIP LINK
+   ============================================ */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 10px;
+    background: #4a3eef;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: 10001;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 60px;
+}
+
+/* ============================================
+   MODO ALTO CONTRASTE
+   ============================================ */
+.high-contrast {
+    background: #000000 !important;
+    color: #ffffff !important;
+}
+
+.high-contrast .banner,
+.high-contrast .services-section,
+.high-contrast .stats-section,
+.high-contrast .testimonials-section,
+.high-contrast .footer {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #ffffff !important;
+}
+
+.high-contrast .service-card,
+.high-contrast .testimonial-card {
+    background: #333333 !important;
+    border: 2px solid #ffffff !important;
+    color: #ffffff !important;
+}
+
+.high-contrast .accessibility-bar {
+    background: #000000 !important;
+    border-bottom: 2px solid #ffffff;
+}
+
+/* ============================================
+   BANNER PRINCIPAL
+   ============================================ */
 .banner {
     width: 100%;
     min-height: 100vh;
@@ -22,50 +120,133 @@ html {
     flex-direction: column;
     color: white;
     position: relative;
+    padding-top: 50px;
 }
 
+/* ============================================
+   HEADER
+   ============================================ */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 50px;
-    z-index: 2;
+    padding: 20px 50px;
+    width: 100%;
+    position: relative;
+    z-index: 1000;
 }
 
 .logo {
     font-size: 28px;
     font-weight: 700;
     letter-spacing: 1px;
+    z-index: 1002;
 }
 
-nav {
+/* ============================================
+   MENU HAMBURGUER - CORREÇÃO COMPLETA
+   ============================================ */
+.hamburger {
+    display: none;
+    /* Escondido por padrão no desktop */
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1002;
+    position: relative;
+    width: 40px;
+    /* Largura maior para facilitar o clique */
+    height: 40px;
+    /* Altura maior para facilitar o clique */
+}
+
+.hamburger-line {
+    width: 30px;
+    /* Largura das linhas */
+    height: 3px;
+    /* Altura das linhas */
+    background: white;
+    /* Cor BRANCA para contrastar com o fundo escuro */
+    margin: 3px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+    display: block;
+    position: relative;
+}
+
+/* Animação do hamburguer quando ativo */
+.hamburger.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+    background: white;
+}
+
+.hamburger.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+.hamburger.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+    background: white;
+}
+
+/* Estilo adicional para garantir visibilidade */
+.hamburger:focus {
+    outline: 2px solid white;
+    border-radius: 4px;
+}
+
+/* ============================================
+   MENU PRINCIPAL - VERSÃO DESKTOP
+   ============================================ */
+.menu {
     display: flex;
-    gap: 30px;
 }
 
-nav a {
-    color: rgb(255, 255, 255);
+.menu-list {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-list li {
+    display: inline-block;
+}
+
+.nav-link {
+    color: white;
     text-decoration: none;
     font-weight: 500;
     position: relative;
     padding: 5px 0;
+    transition: color 0.3s ease;
 }
 
-nav a::after {
+.nav-link::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 0;
     height: 2px;
-    background: rgb(255, 255, 255);
+    background: white;
     transition: width 0.3s ease;
 }
 
-nav a:hover::after {
+.nav-link:hover::after,
+.nav-link:focus::after {
     width: 100%;
 }
 
+/* ============================================
+   CONTEÚDO DO BANNER
+   ============================================ */
 .content {
     flex: 1;
     display: flex;
@@ -74,7 +255,9 @@ nav a:hover::after {
     align-items: center;
     text-align: center;
     padding: 0 20px;
-    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .main-title {
@@ -104,12 +287,16 @@ nav a:hover::after {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.cta-button:hover {
+.cta-button:hover,
+.cta-button:focus {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    outline: 2px solid #4a3eef;
 }
 
-/* ESTILOS DA SEÇÃO DE SERVIÇOS */
+/* ============================================
+   SEÇÃO DE SERVIÇOS
+   ============================================ */
 .services-section {
     width: 100%;
     padding: 80px 20px;
@@ -142,27 +329,22 @@ nav a:hover::after {
     display: flex;
     justify-content: center;
     gap: 30px;
-    /* Espaço entre os cards */
     flex-wrap: wrap;
-    /* Permite que os cards quebrem para a próxima linha em telas menores */
 }
 
 .service-card {
     background-color: rgba(25, 10, 80, 0.7);
-    /* Cor de fundo dos cards, um pouco mais escura que o fundo principal */
     border-radius: 15px;
     padding: 40px;
     flex: 1 1 300px;
-    /* Flexível, com largura base de 300px */
     max-width: 350px;
-    /* Largura máxima para os cards */
     text-align: left;
-    /* Conteúdo interno alinhado à esquerda */
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.service-card:hover {
+.service-card:hover,
+.service-card:focus-within {
     transform: translateY(-10px);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
@@ -196,64 +378,9 @@ nav a:hover::after {
     opacity: 0.85;
 }
 
-/* Responsividade para a seção de serviços */
-@media (max-width: 992px) {
-    .section-title {
-        font-size: 40px;
-    }
-
-    .section-description {
-        font-size: 16px;
-        margin-bottom: 40px auto;
-    }
-
-    .service-card {
-        flex: 1 1 45%;
-        /* Duas colunas em telas médias */
-    }
-
-    .services-cards-wrapper {
-        gap: 25px;
-    }
-}
-
-@media (max-width: 768px) {
-    .services-section {
-        padding: 60px 15px;
-    }
-
-    .section-title {
-        font-size: 36px;
-    }
-
-    .section-description {
-        font-size: 15px;
-        margin-bottom: 30px auto;
-    }
-
-    .service-card {
-        flex: 1 1 100%;
-        /* Uma coluna em telas pequenas */
-        max-width: 400px;
-        /* Limita a largura do card mesmo em coluna única */
-        margin: 0 auto;
-        /* Centraliza o card */
-    }
-
-    .services-cards-wrapper {
-        gap: 20px;
-    }
-
-    .service-card h3 {
-        font-size: 22px;
-    }
-
-    .service-card p {
-        font-size: 15px;
-    }
-}
-
-/* NOVOS ESTILOS PARA A SEÇÃO DE ESTATÍSTICAS */
+/* ============================================
+   SEÇÃO DE ESTATÍSTICAS
+   ============================================ */
 .stats-section {
     background: linear-gradient(135deg, rgba(6, 22, 94, 0.95) 0%, rgba(38, 17, 160, 0.95) 100%);
     padding: 80px 20px;
@@ -262,21 +389,20 @@ nav a:hover::after {
 }
 
 .stats-container {
-    max-width: 1200px; /* Largura máxima do container para não esticar demais */
-    margin: 0 auto; /* Centraliza o container horizontalmente */
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
-    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha em telas menores */
-    justify-content: space-around; /* Distribui os itens com espaço ao redor */
+    flex-wrap: wrap;
+    justify-content: space-around;
     align-items: flex-start;
     gap: 30px;
 }
 
 .stat-item {
-    flex: 1; /* Permite que os itens cresçam e encolham */
+    flex: 1;
     min-width: 200px;
     text-align: center;
     padding: 10px;
-
 }
 
 .stat-number {
@@ -285,7 +411,6 @@ nav a:hover::after {
     line-height: 1.1;
     margin-bottom: 5px;
     color: #ffffff;
-  
 }
 
 .stat-description {
@@ -296,254 +421,176 @@ nav a:hover::after {
     margin-top: 0;
 }
 
-/* Media Queries para Responsividade */
-@media (max-width: 768px) {
-    .stats-section {
-        padding: 60px 15px;
-    }
-    .stat-item {
-        min-width: 45%;
-    }
-    .stat-number {
-        font-size: 3.5em;  
-    }
-    .stat-description {
-        font-size: 1em;  
-    }
+/* ============================================
+   SEÇÃO DE DEPOIMENTOS - CARROSSEL
+   ============================================ */
+.testimonial-search {
+    text-align: center;
+    margin: 20px 0;
 }
 
-@media (max-width: 480px) {
-    .stats-section {
-        padding: 40px 10px;
-    }
-    .stats-container {
-        flex-direction: column; /* Empilha os itens verticalmente em telas muito pequenas */
-        gap: 40px;
-    }
-    .stat-item {
-        min-width: 100%; 
-    }
-    .stat-number {
-        font-size: 3em;  
-    }
-    .stat-description {
-        font-size: 0.9em;  
-    }
+.testimonial-search input {
+    background-color: rgba(64, 57, 160, 0.479);
+    color: #ffffff;
+    width: 60%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: 0.3s ease;
 }
 
- /* NOVOS ESTILOS PARA A SEÇÃO DE DEPOIMENTOS */
- .testimonials-section {
-    padding: 80px 0; 
+.testimonial-search input:focus {
+    border-color: #6c63ff;
+    box-shadow: 0 0 6px rgba(108, 99, 255, 0.4);
+    outline: none;
+}
+
+.testimonial-search input::placeholder {
+    color: #ffffff; /* Cor do placeholder */
+}
+
+.testimonials-section {
+    padding: 80px 0;
     background: linear-gradient(135deg, rgba(6, 22, 94, 0.95) 0%, rgba(38, 17, 160, 0.95) 100%);
-    color: #ffffff; 
- }
-.testimonials-section .container { 
-    max-width: 1200px; 
-    margin: 0 auto; 
-    padding: 20px; 
-    text-align: center; 
+    color: #ffffff;
+}
+
+.testimonials-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
 }
 
 .testimonials-section-title {
-    font-size: 3em; 
-    font-weight: 700; 
+    font-size: 3em;
+    font-weight: 700;
     margin-bottom: 10px;
     color: #ffffff;
-    font-family: 'Poppins', Arial, sans-serif;
 }
 
 .testimonials-section-subtitle {
     font-size: 1.1em;
-    color: #cccccc; 
-    margin-bottom: 50px; 
-    max-width: 800px; 
+    color: #cccccc;
+    margin-bottom: 50px;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    font-family: 'Poppins', Arial, sans-serif;
 }
 
-/* Contêiner do Carrossel */
 .carousel-container {
     width: 100%;
     margin: 0 auto;
-    overflow: hidden; /* Esconde o conteúdo que transborda horizontalmente */
+    overflow: hidden;
     position: relative;
-    padding-bottom: 20px; 
+    padding-bottom: 20px;
 }
 
 .testimonial-cards-wrapper {
     display: flex;
     gap: 30px;
-    padding: 20px; 
-    scroll-snap-type: x mandatory; /* Habilita o "snap" de rolagem para os cartões */
-    -webkit-overflow-scrolling: touch; /* Suaviza a rolagem em dispositivos iOS */
-    overflow-x: auto; /* Permite a rolagem horizontal */
-    justify-content: flex-start; /* Alinha os cartões ao início para a rolagem */
-
-    -ms-overflow-style: none;  /* Esconder para IE e Edge (legado) */
-    scrollbar-width: none;  /* Esconder para Firefox */
+    padding: 20px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    justify-content: flex-start;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    transition: transform 0.5s ease;
 }
 
+.testimonial-cards-wrapper::-webkit-scrollbar {
+    display: none;
+}
 
-/* Cartão de Depoimento Individual */
 .testimonial-card {
-    background-color: #1a1b3f; 
-    border-radius: 15px; 
+    background-color: #1a1b3f;
+    border-radius: 15px;
     padding: 30px;
     text-align: left;
-    flex-shrink: 0; /* Impede que o cartão encolha */
-    width: calc((100% / 3) - 20px); /* Calcula a largura para 3 cartões com espaçamento */
-    max-width: 380px; 
-    box-sizing: border-box; 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
-    scroll-snap-align: center; /* Ponto de "snap" para cada cartão (centraliza ao rolar) */
+    flex: 0 0 calc(33.333% - 20px);
+    max-width: 380px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    scroll-snap-align: start;
 }
 
-/* Cabeçalho do Cartão (Avatar, Nome, Estrelas) */
-.testimonial-card .card-header { /* Especifica para evitar conflito com card-header de outras seções, se houver */
+.testimonial-card .card-header {
     display: flex;
-    align-items: center; 
+    align-items: center;
     margin-bottom: 20px;
 }
 
 .testimonial-card .avatar {
     width: 50px;
     height: 60px;
-    border-radius: 80%; 
+    border-radius: 50%;
     margin-right: 15px;
-    object-fit: cover; /* Garante que a imagem preencha o círculo */
-    border: 2px solid #5d5e75; 
+    object-fit: cover;
+    border: 2px solid #5d5e75;
+    background-color: #5d5e75;
 }
 
 .testimonial-card .user-name {
     font-size: 1.2em;
-    font-weight: 600; 
+    font-weight: 600;
     margin: 0;
     color: #ffffff;
 }
 
 .testimonial-card .user-handle {
     font-size: 0.9em;
-    color: #a0a0b8; 
+    color: #a0a0b8;
     margin: 0;
 }
 
 .testimonial-card .stars {
     display: flex;
-    font-size: 1.3em; 
-    margin-left: auto; 
+    font-size: 1.3em;
+    margin-left: auto;
     gap: 3px;
 }
 
 .testimonial-card .star {
-    color: #8a8af8; 
+    color: #8a8af8;
 }
 
 .testimonial-card .star.empty {
-    color: #5d5e75;  
+    color: #5d5e75;
 }
 
 .testimonial-text {
     font-size: 1em;
     line-height: 1.6;
-    color: #cccccc; 
+    color: #cccccc;
 }
 
-/* Paginação do Carrossel (Pontos) */
 .carousel-pagination {
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     margin-top: 50px;
-    gap: 10px; 
+    gap: 10px;
 }
 
 .carousel-pagination .dot {
     width: 12px;
     height: 12px;
-    border-radius: 50%; 
-    background-color: #5d5e75; 
-    cursor: pointer; 
-    transition: background-color 0.3s ease; 
+    border-radius: 50%;
+    background-color: #5d5e75;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .carousel-pagination .dot.active {
-    background-color: #ffffff; 
-    
-}
-.testimonial-card .star {
-    color: #8a8af8; 
+    background-color: #ffffff;
 }
 
-.testimonial-card .star.empty {
-    color: #5d5e75; 
-}
-
-.testimonial-text {
-    font-size: 1em;
-    line-height: 1.6;
-    color: #cccccc; 
-}
-
-/* Paginação do Carrossel (Pontos) */
-.carousel-pagination {
-    display: flex;
-    justify-content: center; 
-    margin-top: 50px;
-    gap: 10px; 
-}
-
-.carousel-pagination .dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%; 
-    background-color: #5d5e75; /* Cor dos pontos inativos */
-    cursor: pointer; /* Indica que são clicáveis (para JS) */
-    transition: background-color 0.3s ease; /* Transição suave de cor */
-}
-
-.carousel-pagination .dot.active {
-    background-color: #ffffff; 
-}
-
-/* Responsividade da Seção de Depoimentos */
-@media (max-width: 1200px) {
-    .testimonial-card {
-        width: calc(50% - 20px); /* Em telas médias (tablets), mostra 2 cartões por vez */
-        max-width: 500px; /* Permite que os cartões sejam um pouco mais largos */
-    }
-}
-
-@media (max-width: 768px) {
-    .testimonials-section-title {
-        font-size: 2.5em; /* Reduz o tamanho do título em telas menores */
-    }
-    .testimonials-section-subtitle {
-        font-size: 1em; /* Reduz o tamanho do subtítulo */
-    }
-    .testimonial-card {
-        width: calc(100% - 40px); /* Em telas pequenas (celulares), mostra 1 cartão por vez */
-        max-width: 450px; /* Largura máxima para garantir que não fiquem muito grandes */
-    }
-}
-
-@media (max-width: 480px) {
-    .testimonials-section-title {
-        font-size: 2em;
-    }
-    .testimonials-section {
-        padding: 50px 0; /* Reduz o padding da seção */
-    }
-    .testimonial-card {
-        width: calc(100% - 30px); /* Ajusta a largura para telas muito pequenas */
-    }
-    .carousel-pagination {
-        margin-top: 30px; /* Reduz o espaçamento da paginação */
-    }
-}
-
-/* ESTILOS DO FOOTER */
+/* ============================================
+   RODAPÉ
+   ============================================ */
 .footer {
-    background-color: #0a0e28; /* Um azul marinho bem escuro */
+    background-color: #0a0e28;
     color: #ffffff;
     padding: 80px 20px;
 }
@@ -552,19 +599,18 @@ nav a:hover::after {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    flex-wrap: wrap; /* Permite que as colunas quebrem em telas menores */
-    justify-content: space-between; /* Distribui o espaço entre as colunas */
-    gap: 40px; /* Espaço entre as colunas */
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
 }
 
 .footer-column {
-    flex: 1; /* Permite que as colunas cresçam e encolham */
-    min-width: 200px; /* Largura mínima para cada coluna */
+    flex: 1;
+    min-width: 200px;
 }
 
-/* Coluna da marca (logo e social) */
 .brand-column {
-    flex: 1.2; /* Dar um pouco mais de espaço para a coluna da marca */
+    flex: 1.2;
     min-width: 250px;
 }
 
@@ -573,6 +619,11 @@ nav a:hover::after {
     font-weight: 700;
     margin-bottom: 20px;
     letter-spacing: 1px;
+}
+
+.footer-description {
+    margin-bottom: 20px;
+    color: #cccccc;
 }
 
 .social-icons {
@@ -588,19 +639,19 @@ nav a:hover::after {
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    background-color: #4a3eef; /* Azul similar ao dos ícones de serviço */
+    background-color: #4a3eef;
     color: white;
     font-size: 1.2em;
     text-decoration: none;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.social-icon:hover {
+.social-icon:hover,
+.social-icon:focus {
     background-color: #5d5eff;
     transform: translateY(-3px);
 }
 
-/* Títulos das colunas do footer */
 .footer-heading {
     font-size: 1.3em;
     font-weight: 600;
@@ -613,15 +664,13 @@ nav a:hover::after {
     content: '';
     position: absolute;
     left: 0;
-    bottom: -8px; /* Posição da linha abaixo do título */
-    width: 40px; /* Comprimento da linha */
+    bottom: -8px;
+    width: 40px;
     height: 3px;
-    background-color: #4a3eef; /* Cor da linha */
+    background-color: #4a3eef;
     border-radius: 2px;
 }
 
-
-/* Listas de links e contato */
 .footer-links,
 .footer-contact {
     list-style: none;
@@ -642,7 +691,8 @@ nav a:hover::after {
     transition: color 0.3s ease;
 }
 
-.footer-links a:hover {
+.footer-links a:hover,
+.footer-links a:focus {
     color: #ffffff;
 }
 
@@ -650,10 +700,8 @@ nav a:hover::after {
     color: #cccccc;
 }
 
-
-/* Coluna de Newsletter */
 .newsletter-column {
-    min-width: 280px; /* Pode precisar de mais largura por causa do formulário */
+    min-width: 280px;
 }
 
 .newsletter-description {
@@ -668,11 +716,11 @@ nav a:hover::after {
     border: 1px solid #4a3eef;
     border-radius: 30px;
     overflow: hidden;
-    background-color: #1a1b3f; /* Fundo do input */
+    background-color: #1a1b3f;
 }
 
 .newsletter-form input[type="email"] {
-    flex-grow: 1; /* Faz o input ocupar o máximo de espaço */
+    flex-grow: 1;
     padding: 12px 20px;
     border: none;
     background: transparent;
@@ -692,58 +740,219 @@ nav a:hover::after {
     color: white;
     font-size: 1.1em;
     cursor: pointer;
-    border-radius: 0 30px 30px 0; /* Apenas o lado direito arredondado */
+    border-radius: 0 30px 30px 0;
     transition: background-color 0.3s ease;
-    display: flex; /* Para centralizar o ícone */
+    display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.newsletter-form button[type="submit"]:hover {
+.newsletter-form button[type="submit"]:hover,
+.newsletter-form button[type="submit"]:focus {
     background-color: #5d5eff;
 }
 
-/* Responsividade do Footer */
-@media (max-width: 992px) {
-    .footer-column {
-        flex: 1 1 calc(50% - 20px); /* Duas colunas por linha em telas médias */
-        min-width: unset; /* Remove o min-width para flexibilidade */
+/* ============================================
+   RESPONSIVIDADE - MENU MOBILE
+   ============================================ */
+
+/* Overlay para menu mobile */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ============================================
+   CORREÇÃO CRÍTICA: HAMBURGUER VISÍVEL EM MOBILE
+   ============================================ */
+@media (max-width: 768px) {
+    .header {
+        padding: 15px 20px;
     }
-    .brand-column {
-        flex: 1 1 100%; /* Coluna da marca ocupa toda a largura em telas médias */
-        text-align: center;
+
+    /* MOSTRA O BOTÃO HAMBURGUER EM MOBILE */
+    .hamburger {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
-    .brand-column .footer-logo {
-        margin-bottom: 10px;
+
+    /* Estilo extra para garantir visibilidade */
+    .hamburger .hamburger-line {
+        background: white !important;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+        /* Sombra para melhor contraste */
     }
-    .brand-column .social-icons {
+
+    /* Esconde o menu normal e transforma para o menu mobile */
+    .menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: linear-gradient(135deg, rgba(6, 22, 94, 0.95) 0%, rgba(38, 17, 160, 0.95) 100%);
+        padding: 100px 30px 30px;
+        transition: right 0.3s ease;
+        z-index: 1000;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .menu.active {
+        right: 0;
+    }
+
+    .menu-list {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .menu-list li {
+        display: block;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 15px;
+        font-size: 1.2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-link::after {
+        display: none;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+    }
+
+    /* Ajustes de conteúdo para mobile */
+    .main-title {
+        font-size: 48px;
+    }
+
+    .description {
+        font-size: 16px;
+    }
+
+    /* Carrossel em mobile */
+    .testimonial-card {
+        flex: 0 0 calc(100% - 20px);
+        max-width: 100%;
+    }
+
+    .accessibility-bar {
+        padding: 8px 15px;
         justify-content: center;
-        margin-bottom: 30px;
+        flex-wrap: wrap;
     }
-    .footer-heading::after {
-        left: 50%;
-        transform: translateX(-50%); /* Centraliza a linha */
+
+    .accessibility-bar button {
+        padding: 6px 10px;
+        font-size: 12px;
     }
 }
 
-@media (max-width: 768px) {
-    .footer-container {
-        flex-direction: column; /* Uma coluna por linha em telas pequenas */
-        align-items: center; /* Centraliza as colunas */
+/* Telas muito pequenas */
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 36px;
     }
-    .footer-column {
-        width: 100%; /* Ocupa toda a largura */
-        max-width: 400px; /* Limita a largura em telas muito grandes */
-        text-align: center;
+
+    .description {
+        font-size: 14px;
+        padding: 0 10px;
     }
-    .brand-column .social-icons {
-        margin-bottom: 40px; /* Mais espaço após ícones sociais */
+
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 14px;
     }
-    .footer-heading {
-        margin-top: 30px; /* Espaço entre os títulos das seções */
+
+    .menu {
+        width: 85%;
+        max-width: 300px;
     }
-    .newsletter-form {
-        max-width: 350px; /* Limita a largura do formulário */
-        margin: 0 auto; /* Centraliza o formulário */
+
+    .accessibility-bar {
+        justify-content: space-around;
+    }
+
+    /* Botão hamburguer mais visível */
+    .hamburger {
+        width: 35px;
+        height: 35px;
+    }
+
+    .hamburger-line {
+        width: 25px;
+        height: 3px;
     }
 }
+
+/* Telas médias (tablets) */
+@media (max-width: 992px) {
+    .section-title {
+        font-size: 40px;
+    }
+
+    .section-description {
+        font-size: 16px;
+    }
+
+    .service-card {
+        flex: 1 1 45%;
+    }
+
+    /* Carrossel em tablets */
+    .testimonial-card {
+        flex: 0 0 calc(50% - 20px);
+        max-width: 100%;
+    }
+}
+
+/* Desktop - garante que o hamburguer não aparece */
+@media (min-width: 769px) {
+    .hamburger {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    .menu-overlay {
+        display: none !important;
+    }
+}
+
+/* Previne rolagem quando menu está aberto */
+body.menu-open {
+    overflow: hidden;
+}
+
+/* ============================================
+   ESTILO DE DEBUG - PARA VER O ÍCONE
+   ============================================ */
+
+/*.hamburger {
+    border: 2px solid red !important;
+    background-color: rgba(255, 0, 0, 0.1) !important;
+}
+
+.hamburger-line {
+    background: white !important;
+    border: 1px solid black !important;
+}*/

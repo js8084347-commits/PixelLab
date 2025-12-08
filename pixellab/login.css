@@ -20,8 +20,96 @@ body {
     justify-content: center;
     align-items: center;
     color: white;
+    margin-top: 60px; /* ajuste conforme a altura da barra */
 }
 
+/* Estlos para a barra de acessibilidade*/
+.accessibility-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #225eb946;
+    padding: 10px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #355aaa48;
+}
+
+
+.accessibility-title {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.accessibility-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.accessibility-btn {
+    background-color: #3498db75;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.accessibility-btn:hover,
+.accessibility-btn:focus {
+    background-color: #2980b9;
+    outline: 2px solid #fff;
+}
+
+.high-contrast {
+    background-color: black !important;
+    color: yellow !important;
+}
+
+.high-contrast .container,
+.high-contrast .login-card,
+.high-contrast .accessibility-bar {
+    background-color: black !important;
+    color: yellow !important;
+    border: 2px solid yellow !important;
+}
+
+.high-contrast a {
+    color: #ffff00 !important;
+}
+
+.high-contrast button {
+    background-color: yellow !important;
+    color: black !important;
+    border: 2px solid white !important;
+}
+
+
+.large-text {
+    font-size: 1.3rem !important;
+}
+
+.large-text h1 {
+    font-size: 2.2rem !important;
+}
+
+.large-text .accessibility-btn,
+.large-text .login-btn,
+.large-text input {
+    font-size: 1.2rem !important;
+    padding: 12px !important;
+}
+
+
+/*Fim da barra */
+
+/* Inicio do login container */
 .login-container {
     width: 100%;
     max-width: 450px;
@@ -230,3 +318,4 @@ body {
         text-align: center;
     }
 }
+

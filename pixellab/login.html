@@ -7,7 +7,27 @@
     <link rel="stylesheet" href="login.css">
     <title>PixelLab - Login</title>
 </head>
+<!-- Barra de acessibilidade-->
 <body>
+    <div class="accessibility-bar" role="toolbar" aria-label="Barra de acessibilidade">
+        <div class="accessibility-title">Acessibilidade:</div>
+        <div class="accessibility-controls">
+            <button class="accessibility-btn" id="increase-font" aria-label="Aumentar tamanho da fonte">
+                A+ Aumentar Fonte
+            </button>
+            <button class="accessibility-btn" id="decrease-font" aria-label="Diminuir tamanho da fonte">
+                A- Diminuir Fonte
+            </button>
+            <button class="accessibility-btn" id="high-contrast" aria-label="Ativar alto contraste">
+                Alto Contraste
+            </button>
+            <button class="accessibility-btn" id="normal-view" aria-label="Voltar à visualização normal">
+                Visualização Normal
+            </button>
+        </div>
+    </div>
+    
+<!-- Login container-->
     <div class="login-container">
         <div class="logo">PixelLab</div>
         <h2 class="login-title">Faça login em sua conta</h2>

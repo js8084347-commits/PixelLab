@@ -1,4 +1,63 @@
-document.addEventListener('DOMContentLoaded', function() {
+    // ESSA PARTE É DE FUNCIONALIDADES DE ACESSIBILIDADE 
+
+    // Aguarda o carregamento completo da página ----- JÁ VIMOS MUITO SOBRE ISSOOOO
+ document.addEventListener('DOMContentLoaded', function() {
+     
+    // VARIÁVEIS GLOBAIS
+   
+    const body = document.body;
+    const increaseFontBtn = document.getElementById('increase-font');
+    const decreaseFontBtn = document.getElementById('decrease-font');
+    const highContrastBtn = document.getElementById('high-contrast');
+    const normalViewBtn = document.getElementById('normal-view');
+    const loginForm = document.getElementById('login-form');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const togglePasswordBtn = document.getElementById('toggle-password');
+    const successMessage = document.getElementById('success-message');
+    
+
+    // CONTROLES DE FONTE
+   
+    
+    // Aumenta o tamanho da fonte em 20%
+    increaseFontBtn.addEventListener('click', function() {
+        body.classList.add('large-text');
+        body.classList.remove('high-contrast');
+        showTemporaryMessage('Tamanho da fonte aumentado. Pressione Ctrl+0 para voltar ao normal.');
+        // Move o foco para o título principal para feedback
+        document.getElementById('main-title').focus();
+    });
+    
+    // Diminui o tamanho da fonte (volta ao normal)
+    decreaseFontBtn.addEventListener('click', function() {
+        body.classList.remove('large-text');
+        body.classList.remove('high-contrast');
+        showTemporaryMessage('Tamanho da fonte redefinido.');
+    });
+    
+  
+    // CONTROLES DE CONTRASTE
+  
+    
+    // Ativa o modo de alto contraste
+    highContrastBtn.addEventListener('click', function() {
+        body.classList.add('high-contrast');
+        body.classList.remove('large-text');
+        showTemporaryMessage('Modo de alto contraste ativado.');
+    });
+    
+    // Volta à visualização normal
+    normalViewBtn.addEventListener('click', function() {
+        body.classList.remove('high-contrast');
+        body.classList.remove('large-text');
+        showTemporaryMessage('Visualização normal ativada.');
+    });    
+    
+    
+    
+    
+    document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
@@ -87,4 +146,6 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('Redirecionando para página de cadastro...');
         // window.location.href = 'signup.html'; // Descomente para redirecionar
     });
+});
+
 });
